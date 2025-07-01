@@ -18,7 +18,7 @@ Questo blog nasce da un’esperienza personale — condivisa tra padre e figlio 
 ---
 
 **🌐 Sito web:**  
-👉 [Parliamo di articolazioni blog](https://salute-articolazioni.github.io/salute-articolare/index.html)
+👉 [Parliamo di articolazioni](https://salute-articolazioni.github.io/salute-articolare/index.html)
 
 **📬 Contatto:**  
 [giovanni.costa.mosta@gmail.com](mailto:giovanni.costa.mosta@gmail.com)
