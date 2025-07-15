@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://salute-articolazioni.github.io/salute-articolare/</loc>
-    <lastmod>2024-06-29</lastmod>
+    <loc>https://salute-articolazioni.github.io/salute-articolare/index.html</loc>
   </url>
-    <url>
+  <url>
     <loc>https://salute-articolazioni.github.io/salute-articolare/il-blog.html</loc>
-    <lastmod>2024-07-05</lastmod>
+  </url>
+  <url>
+    <loc>https://salute-articolazioni.github.io/salute-articolare/dolore-ginocchio-laterale-esterno-corsa.html</loc>
+  </url>
+  <url>
+    <loc>https://salute-articolazioni.github.io/salute-articolare/rimedi-naturali-per-dolori-articolari.html</loc>
   </url>
 </urlset>
