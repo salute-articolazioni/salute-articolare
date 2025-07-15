@@ -1,370 +1,641 @@
 :root {
-  --primary: #2C5E92;
-  --primary-light: #3A7AB8;
-  --secondary: #4CAF50;
-  --accent: #FF9800;
-  --light: #F8F9FA;
-  --dark: #333333;
-  --gray: #6C757D;
-  --light-gray: #E9ECEF;
-  --white: #FFFFFF;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --primary: #0a5c36;
+  --secondary: #1e8449;
+  --accent: #f39c12;
+  --light: #edf5f0;
+  --dark: #0c2b1c;
+  --gray: #4a5c54;
+  --white: #ffffff;
   --transition: all 0.3s ease;
+  --shadow: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-hover: 0 8px 20px rgba(0,0,0,0.12);
+  --border-radius: 8px;
 }
 
-/*--------------------------------------------------------------
-2. Сброс и базовые стили
---------------------------------------------------------------*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Подключение шрифта Inter для основного текста */
-body, article, section, p, li, ul, ol {
-  font-family: 'Inter', Arial, Helvetica, sans-serif;
-  font-size: 1.12rem;
-  /*line-height: 1.8;*/
-  color: var(--dark);
-}
-
-/* Фон */
 body {
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.6;
+  color: var(--dark);
   background-color: var(--light);
-  background-image:
-    linear-gradient(
-      to bottom,
-      rgba(245, 251, 255, 0.9),
-      rgba(255, 255, 255, 0.9)
-    ),
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f8f9fa'/><path d='M0 50 L100 50 M50 0 L50 100' stroke='%23e9ecef' stroke-width='0.5'/></svg>");
-  background-size: 100px 100px;
+  position: relative;
 }
 
-/* Контейнер */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(237, 245, 240, 0.8) 0%, rgba(237, 245, 240, 0.9) 100%);
+  z-index: -1;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
 .container {
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
 }
 
-/*--------------------------------------------------------------
-3. Шапка сайта
---------------------------------------------------------------*/
-.fem-header {
-  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+img {
+  max-width: 100%;
+}
+
+a {
+  color: var(--secondary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+/* ===== HEADER ===== */
+.site-header {
+  background: linear-gradient(rgb(140 185 164 / 85%), rgb(112 120 116 / 59%)), url('img/uomo sportivo.jpg') center / cover no-repeat;
   color: var(--white);
-  padding: 1.5rem 0;
-  box-shadow: var(--shadow);
-  top: 0;
-  z-index: 1000;
-}
-
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 60px 0 40px;
   position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.logo {
+
+
+.site-header__inner {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
-.logo-flower {
-  font-size: 2.5rem;
-  animation: pulse 2s infinite;
+.site-header__logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
-@keyframes pulse {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.1); }
-  100% { transform: scale(1); }
+.site-header__logo {
+  animation: pulse-logo 3s infinite cubic-bezier(0.4, 0, 0.6, 1);
 }
 
-.logo-text {
-  font-family: Georgia, serif;
+@keyframes pulse-logo {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(46, 204, 113, 0.18));
+  }
+  60% {
+    transform: scale(1.10);
+    filter: drop-shadow(0 0 16px rgba(46, 204, 113, 0.35));
+  }
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(46, 204, 113, 0.15));
+  }
+}
+
+
+.site-header__icon {
+  width: 70px;
+  height: 70px;
+  fill: none;
+  stroke: var(--white);
+  stroke-width: 4;
+}
+
+.site-header__icon circle:last-child {
+  fill: var(--accent);
+  stroke: none;
+}
+
+.site-header__title {
   font-size: 2.8rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-  color: #c6b78c;
+  margin-bottom: 12px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  letter-spacing: -0.5px;
 }
 
-.header-subtitle {
-  font-size: 0.95rem;
+.site-header__tagline {
+  font-size: 1.4rem;
+  max-width: 700px;
   opacity: 0.9;
-  margin: 0;
-  text-align: right;
-  color: #e9deb8;
+  font-weight: 400;
+  margin-bottom: 10px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.15);
 }
 
-.fem-nav {
-  display: none;
-}
-
-/*--------------------------------------------------------------
-4. Основное содержание
---------------------------------------------------------------*/
+/* ===== MAIN CONTENT ===== */
 main {
-  padding: 3rem 0;
+  padding: 60px 0;
+  position: relative;
 }
 
 article {
   background: var(--white);
-  border-radius: 15px;
+  border-radius: var(--border-radius);
   box-shadow: var(--shadow);
+  padding: 50px;
+  position: relative;
   overflow: hidden;
-  margin-top: 30px;
-  margin-bottom: 2rem;
+  transform: translateY(-40px);
+  margin-top: 70px;
 }
 
-section {
-  padding: 2rem;
-  border-bottom: 1px solid var(--light-gray);
-}
 
-section:last-child {
-  border-bottom: none;
-}
 
-/*----------------------------
-5. Текст и заголовки статьи
-----------------------------*/
 .fem-title {
-  color: var(--primary);
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  line-height: 1.2;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-}
-h1, .fem-title {
-  color: var(--primary);
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-top: 0.7em;
-  margin-bottom: 1.2em;
-  line-height: 1.18;
-  letter-spacing: 0.01em;
-}
-h2, .fem-section-title {
-  font-size: 1.55rem;
-  margin-top: 2.3em;
-  margin-bottom: 0.88em;
-  font-weight: 600;
-  color: #36587a;
-  letter-spacing: 0.01em;
-}
-
-/*----------------------------
-6. Параграфы и списки
-----------------------------*/
-p {
-  margin-bottom: 1.12em;
-  margin-top: 0;
-  line-height: 1.8rem;
-}
-ul, ol {
-  list-style: none;
-  padding-left: 0;
-  margin-bottom: 1.15em;
-  margin-top: 0.3em;
-}
-li {
-  margin-bottom: 0.34em;
-  padding-left: 0;
+  font-size: 2.4rem;
+  color: #f39c12;
+  margin-bottom: 30px;
   position: relative;
 }
 
-/* Кастомные маркеры для списков — включи если нужно */
-/*
-ul li:before {
-  content: "–";
-  position: absolute;
-  left: -1.2em;
-  color: #4CAF50;
-  font-weight: 700;
-}
-*/
 
-/*--------------------------------------------------------------
-7. Материалы блога/разделы
---------------------------------------------------------------*/
-.fem-section-title {
-  color: var(--primary);
-  font-size: 1.8rem;
-  margin: 1.5rem 0 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--light-gray);
+.intro {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--gray);
+  margin-bottom: 30px;
+  padding: 20px;
+  background: rgba(237, 245, 240, 0.4);
+  border-left: 3px solid var(--secondary);
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
   position: relative;
 }
-.fem-section-title::after {
+
+.intro::before {
   content: "";
   position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 80px;
-  height: 2px;
-  background: var(--secondary);
-}
-.fem-list {
-  list-style: none;
-  margin: 1.5rem 0;
-  padding: 0;
-}
-.fem-list li {
-  padding: 0.8rem 1rem;
-  margin-bottom: 0.8rem;
-  border-bottom: 1px solid var(--light-gray);
-}
-.fem-list li:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-.fem-list a {
-  color: var(--primary);
-  text-decoration: none;
-  font-size: 1rem;
-  transition: var(--transition);
-}
-.fem-list a:hover,
-.fem-list a:focus {
-  color: var(--primary-light);
+  top: -20px;
+  left: 10px;
+  font-size: 5rem;
+  color: rgba(30, 132, 73, 0.1);
+  font-family: serif;
+  line-height: 1;
 }
 
-/*--------------------------------------------------------------
-8. Подвал
---------------------------------------------------------------*/
-.fem-footer {
-  background: #333 !important;
-  color: #fff !important;
-  padding: 30px 0;
+/* ===== ARTICLES SECTION ===== */
+#articles {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(10, 92, 54, 0.1);
 }
-.fem-footer p {
-  color: #fff !important;
-  margin: 0.55em 0;
-  line-height: 1.7;
-  text-align: center;
-  font-size: 13px;
+
+.fem-section-title {
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 25px;
+  position: relative;
+  padding-left: 15px;
 }
-.fem-footer a {
-  color: var(--white);
-  text-decoration: none;
+
+.fem-section-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 30px;
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+.fem-list {
+  list-style: none;
+}
+
+.fem-list li {
+  margin-bottom: 15px;
+  padding: 15px 20px;
+  background: var(--light);
+  border-radius: var(--border-radius);
   transition: var(--transition);
-  margin: 0 10px;
+  border-left: 3px solid var(--secondary);
 }
-.fem-footer a:hover,
-.fem-footer a:focus {
+
+.fem-list li:hover {
+  transform: translateX(10px);
+  box-shadow: var(--shadow-hover);
+  border-left: 3px solid var(--accent);
+}
+
+.fem-list a {
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: block;
+  color: var(--dark);
+}
+
+.fem-list a:hover {
+  color: var(--accent);
+}
+
+/* ===== FOOTER ===== */
+.fem-footer {
+  background: #4c6a5b;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 40px 0;
+  text-align: center;
+  font-size: 0.95rem;
+  position: relative;
+}
+
+
+.fem-footer p {
+  margin-bottom: 10px;
+}
+
+.fem-footer p:first-child {
+  font-weight: 600;
+  color: var(--white);
+}
+
+/* ===== ANIMATIONS & DECORATIONS ===== */
+.running-icon {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.running-icon:nth-child(1) {
+  top: 15%;
+  left: 5%;
+  animation: float 12s infinite linear;
+}
+
+.running-icon:nth-child(2) {
+  top: 25%;
+  right: 7%;
+  animation: float 15s infinite linear reverse;
+}
+
+.running-icon:nth-child(3) {
+  bottom: 20%;
+  left: 10%;
+  animation: float 18s infinite linear;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .site-header__title {
+    font-size: 2.2rem;
+  }
+  
+  .site-header__tagline {
+    font-size: 1.2rem;
+  }
+  
+  article {
+    padding: 30px 20px;
+  }
+  
+  .fem-title {
+    font-size: 1.8rem;
+  }
+  
+  .intro {
+    font-size: 1rem;
+    padding: 15px;
+  }
+  
+  .running-icon {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header {
+    padding: 40px 0 30px;
+  }
+  
+  .site-header__title {
+    font-size: 1.8rem;
+  }
+  
+  .site-header__tagline {
+    font-size: 1.1rem;
+  }
+  
+  .fem-title {
+    font-size: 1.5rem;
+  }
+}
+
+
+/* Чтобы обычные абзацы внутри #about были хорошо читаемы и не слипались */
+#about p {
+  margin-bottom: 1.3em;
+  font-size: 1.08rem;
+  color: var(--gray);
+}
+
+/* Абзац-приветствие "Benvenuto." — крупнее, жирно, с мягким акцентом */
+.benvenuto {
+  font-size: 1.33rem;
+  color: var(--primary);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: left;
+  margin-top: 2.1em;
+  margin-bottom: 0;
+}
+
+/* Если хочешь, чтобы только первый .intro внутри #about был цветным, остальные нет */
+#about .intro {
+  background: rgba(237, 245, 240, 0.4);
+  border-left: 3px solid var(--secondary);
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  padding: 20px;
+  color: var(--gray);
+  font-size: 1.1rem;
+  margin-bottom: 1.6em;
+}
+
+/* Блок с изображением в центре, для фото */
+.img-block {
+  text-align: center;
+  margin: 2.3rem 0;
+}
+.img-block img {
+  max-width: 90%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.09);
+}
+
+/* Заголовки второго уровня — выделяем как секции */
+.fem-section-title {
+  font-size: 1.35rem;
+  margin: 2.2em 0 1em 0;
+  color: #3f8c68;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0;
+  position: relative;
+  padding-left: 15px;
+}
+.fem-section-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 26px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* Списки */
+#about ul {
+  margin: 0 0 1.4em 1.1em;
+  padding-left: 1.3em;
+  font-size: 1.04rem;
+  color: var(--gray);
+  line-height: 1.7;
+}
+#about li {
+  margin-bottom: 0.55em;
+}
+
+/* Абзацы */
+#about p {
+  margin-bottom: 1.2em;
+  font-size: 1.08rem;
+  color: var(--gray);
+}
+
+/* Disclaimer — отдельное оформление */
+.disclaimer {
+  background: #fff6e7;
+  border-left: 4px solid var(--accent);
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  padding: 1em 1.2em;
+  color: #9e640c;
+  font-size: 1.01rem;
+  margin-top: 2.5em;
+  margin-bottom: 0;
+  box-shadow: 0 1px 7px #fae0be3a;
+  font-weight: 600;
+}
+
+/* Responsive — чуть уменьшить отступы на мобильных */
+@media (max-width: 600px) {
+  .img-block {
+    margin: 1.1rem 0;
+  }
+  .fem-section-title {
+    font-size: 1.25rem;
+    padding-left: 10px;
+  }
+  .fem-section-title::before {
+    height: 45px;
+    width: 4px;
+  }
+  .disclaimer {
+    font-size: 0.97rem;
+    padding: 0.85em 0.5em;
+  }
+}
+
+/* Центрированный figure с подписью */
+.figure-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2.2em 0 2em 0;
+}
+
+.figure-centered__img {
+  max-width: 86%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.10);
+}
+
+.figure-centered__caption {
+  font-size: 0.97rem;
+  color: var(--gray);
+  opacity: 0.85;
+  text-align: center;
+  margin-top: 0.7em;
+  font-style: italic;
+}
+
+
+.check-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 1.4em 0;
+}
+
+.check-list li {
+  padding-left: 2.1em;
+  position: relative;
+  margin-bottom: 0.75em;
+  font-size: 1.05rem;
+  color: var(--gray);
+}
+.check-list .checkmark {
+  position: absolute;
+  left: 0;
+  top: 0.09em;
+  font-size: 1.2em;
+  line-height: 1;
+  color: #21a06b;
+}
+
+.emoji {
+  font-size: 1.07em;
+  margin-right: 0.17em;
+}
+
+.mail-tip {
+  font-size: 1.02rem;
+  color: var(--primary);
+  font-weight: 500;
+  margin-top: 1.7em;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .figure-centered__img {
+    max-width: 99%;
+  }
+  .figure-centered__caption {
+    font-size: 0.89rem;
+  }
+  .mail-tip {
+    font-size: 0.97rem;
+    margin-top: 1em;
+  }
+}
+
+.check-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1.5em;
+}
+.check-list li {
+  position: relative;
+  padding-left: 2.1em;
+  margin-bottom: 0.8em;
+  font-size: 1.05rem;
+  color: var(--gray);
+  display: flex;
+  align-items: flex-start;
+  line-height: 1.6;
+}
+.check-icon {
+  position: absolute;
+  left: 0;
+  top: 0.12em;
+  font-size: 1.18em;
+ 
+  opacity: 0.95;
+}
+.check-success {
+  color: #25a657;
+}
+.check-fail {
+  color: #de3d3a;
+}
+
+
+ul:not(.check-list) {
+  list-style-type: disc;               
+  padding-left: 1.4em;                 
+  margin-bottom: 1.5em;
+}
+
+ul:not(.check-list) li {
+  font-size: 1.05rem;
+  color: var(--gray);
+  line-height: 1.7;
+  margin-bottom: 0.7em;
+  position: relative;
+  left: 0.02em;
+}
+
+
+ul:not(.check-list) {
+  list-style-position: outside;
+}
+
+ul:not(.check-list) li::marker {
+  color: var(--secondary);     
+  font-size: 1.08em;
+  font-family: inherit;
+}
+
+.article-list {
+  list-style-type: disc;
+  list-style-position: inside;  
+  padding-left: 0;
+  margin: 0 0 1.7em 0;
+}
+
+.article-list li {
+  font-size: 1.07rem;
+  color: var(--secondary);     
+  line-height: 1.7;
+  margin-bottom: 0.6em;
+  padding-left: 0.1em;        
+}
+
+.article-list li::marker {
+  color: var(--accent);        
+  font-size: 1.16em;
+}
+
+.article-list a {
+  color: var(--secondary);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.article-list a:hover {
   color: var(--accent);
   text-decoration: underline;
 }
 
-/*--------------------------------------------------------------
-9. Мобильная версия (улучшения)
---------------------------------------------------------------*/
-@media (max-width: 767px) {
-  .fem-header {
-    padding: 1rem 0.5rem;
-  }
-  .header-content {
-    flex-direction: column;
-    align-items: center;
-  }
-  .logo {
-    margin-bottom: 8px;
-    gap: 6px;
-  }
-  .logo-text {
-    font-size: 2.3rem;
-	text-align: center;
-  }
-  .logo-flower {
-    font-size: 2rem;
-  }
-  .header-subtitle {
-    font-size: 1rem;
-    margin-bottom: 0.8rem;
-	text-align: left;
-	color: #e9deb8;
-  }
-  main {
-    padding: 1.3rem 0;
-  }
-  article {
-    margin-top: 14px;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 7px rgba(0,0,0,0.04);
-  }
-  section {
-    padding: 1.1rem 0.9rem;
-  }
-  .fem-title {
-    font-size: 1.3rem !important;
-    margin-top: 14px;
-    margin-bottom: 0.7em;
-    line-height: 1.26;
-  }
-  h1, .fem-title {
-    font-size: 1.7rem !important;
-    margin-bottom: 1em;
-    line-height: 1.18;
-  }
-  h2, .fem-section-title {
-    font-size: 1.3rem !important;
-    margin-top: 1.4em;
-    margin-bottom: 0.54em;
-  }
-  p, ul, ol, li {
-    font-size: 1.01rem;
-    line-height: 1.86;
-  }
-  .container {
-    width: 99%;
-    padding: 0 5px;
-  }
-  .fem-footer {
-    padding: 1.5rem 0.5rem;
-    font-size: 0.85rem;
-  }
-  .fem-footer a {
-    margin: 0 5px;
-  }
-}
-
-/*--------------------------------------------------------------
-10. Десктопная версия (768px и выше)
---------------------------------------------------------------*/
-@media (min-width: 768px) {
-  .header-content {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .logo {
-    margin-bottom: 0;
-  }
-  .fem-title {
-    font-size: 2.8rem;
-  }
-  section {
-    padding: 2.5rem;
-  }
-}
-
-/*--------------------------------------------------------------
-11. Большие экраны (992px и выше)
---------------------------------------------------------------*/
-@media (min-width: 992px) {
-  .container {
-    width: 85%;
-  }
-  .fem-title {
-    font-size: 2.1rem;
-  }
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #5f5c5b;            
+  margin: 1.6em 0 0.7em 0;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  text-transform: none;            
+  background: none;
+  transition: color 0.18s;
 }
